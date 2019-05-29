@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Error from './Error';
 
-function Seeker() {
+function Seeker({saveSearch}) {
 
     const [searchTerm, saveSearchTerm] = useState('');
     const [error, saveError] = useState(false); 
@@ -17,7 +17,7 @@ function Seeker() {
 
         // Enviar el termino hacia el componente principal 
         saveError(false);
-        return false;
+        saveSearch(searchTerm);
     }
 
     return (
