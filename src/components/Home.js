@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import ClientList from './ClientList';
 
-function Home({clients}) {
+function Home({clients,saveReloadClients}) {
 	return(
 		<Fragment>
 			<h1 className="text-center"> Lista Clientes </h1>
@@ -10,6 +10,7 @@ function Home({clients}) {
 					<ClientList
 						key={client.id}
 						client={client}
+						saveReloadClients={saveReloadClients}
 					/>
 				))}
 			</ul>

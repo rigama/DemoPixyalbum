@@ -35,6 +35,7 @@ function App() {
                         render={()=>(
                             <Home 
                                 clients={clients}
+                                saveReloadClients={saveReloadClients}
                             />
                         )}
                     />
@@ -49,6 +50,7 @@ function App() {
                             return(
                                 <EditClient 
                                     client={client[0]}
+                                    saveReloadClients={saveReloadClients}
                                 />
                             )
                         } }

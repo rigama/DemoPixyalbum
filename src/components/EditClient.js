@@ -1,7 +1,13 @@
 import React, {useState, useRef} from 'react';
 import Error from './Error';
 
-function EditClient({client}){
+import axios from 'axios';
+import Swal from 'sweetalert2';
+import {withRouter} from 'react-router-dom'; 
+
+function EditClient(props){
+
+	const {history,client, saveReloadClients} = props;
 
 	const nameRef = useRef('');
 	const lastNameRef = useRef('');
@@ -11,7 +17,53 @@ function EditClient({client}){
 	const [error, saveError ] = useState(false);
 	const [sex, saveSex ] = useState('');
 
-	const edithClient = e => {
+	const edithClient =  async e => {
+		e.preventDefault();
+
+		const newValueNameClient = nameRef.current.value,
+			  newValueLastNameClient = lastNameRef.current.value,
+			  newValueAgeClient = ageRef.current.value;
+
+		if( newValueNameClient === '' | newValueLastNameClient==='' | newValueAgeClient==='' ){
+			saveError(true);
+			return;
+		} 
+
+		saveError(false);
+
+		let typeSex = (sex==='') ? client.sex : sex;
+
+		console.log(typeSex); 
+
+		const editClient = {
+			name: newValueNameClient,
+			lastName: newValueLastNameClient,
+			age: newValueAgeClient,
+			sex: typeSex
+		}
+		
+		const url = `http://localhost:4000/clients/${client.id}`;
+		try{
+			const result = await axios.put(url, editClient);
+			
+			if(result.status === 200){
+				Swal.fire(
+					'Cliente Editado',
+					'Se ha editado correctamente el cliente',
+					'success'
+				)
+			}
+
+		}catch (error){
+			Swal.fire({
+				type: 'error',
+				title: 'Error',
+				text: 'Hubo un error, intenta nuevamente'
+			});
+		}
+
+		saveReloadClients(true);
+		history.push('/home');
 
 	}
 	const readValueRadio = e => {
@@ -103,4 +155,4 @@ function EditClient({client}){
 	);
 }
 
-export default EditClient;
+export default withRouter(EditClient);
