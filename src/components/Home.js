@@ -1,8 +1,20 @@
-import React from 'react';
+import React, {Fragment} from 'react';
+import ClientList from './ClientList';
 
-function Home() {
+function Home({clients}) {
 	return(
-		<h1 className="text-center"> Inicio </h1>
+		<Fragment>
+			<h1 className="text-center"> Lista Clientes </h1>
+			<ul className="list-group mt-5">
+				{clients.map(client => (
+					<ClientList
+						key={client.id}
+						client={client}
+					/>
+				))}
+			</ul>
+		</Fragment>
+		
 	);
 }
 

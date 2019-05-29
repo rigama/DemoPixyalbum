@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => (
 	<nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-		<div class="container">
+		<div className="container">
 			<Link to="/Home" className="navbar-brand">
 				Demo para Pixialbum
 			</Link>
@@ -14,6 +14,14 @@ const Header = () => (
 						to='/home'
 						className="nav-link"
 						>Inicio
+					</Link>
+				</li>
+
+				<li className="nav-item">
+					<Link 
+						to='/client-new'
+						className="nav-link"
+						>Nuevo Cliente
 					</Link>
 				</li>
 
