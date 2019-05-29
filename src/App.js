@@ -1,26 +1,18 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Seeker from './components/Seeker'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return ( 
+        <div className= "app container">
+            <div className = "jumbotron">
+                <p className = "lead text-center"> Buscador de imágenes </p>    
+                <Seeker/>
+            </div> 
+            <div className = "row justify-content-center">
+            </div> 
+        </div>
+
+    );
 }
 
 export default App;
